@@ -45,15 +45,10 @@ class BundleManager {
   async loadBundles(distribute = true) {
     Logger.verbose('LOAD: BUNDLES');
 
-    const bundles = fs.readdirSync(this.bundlesPath);
+    const bundles = this.state.Config.get('bundles');
     for (const bundle of bundles) {
       const bundlePath = this.bundlesPath + bundle;
-      if (fs.statSync(bundlePath).isFile() || bundle === '.' || bundle === '..') {
-        continue;
-      }
-
-      // only load bundles the user has configured to be loaded
-      if (this.state.Config.get('bundles', []).indexOf(bundle) === -1) {
+      if (fs.existsSync(bundlePath) && fs.statSync(bundlePath).isFile() || bundle === '.' || bundle === '..') {
         continue;
       }
 
