@@ -88,7 +88,7 @@ class Account {
     this.__manager.loader.update(this.username, this.serialize())
       .then((data) => {if (typeof callback === 'function') {
         callback()
-      } console.log(data)});
+      } });
   }
 
   /**
