@@ -394,6 +394,7 @@ class Room extends GameEntity {
    */
   hydrate(state) {
     this.setupBehaviors(state.RoomBehaviorManager);
+    this.__manager = state.RoomManager;
 
     /**
      * Fires when the room is created but before it has hydrated its default

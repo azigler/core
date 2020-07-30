@@ -102,6 +102,7 @@ class Npc extends Scriptable(Character) {
   hydrate(state) {
     super.hydrate(state);
     state.MobManager.addMob(this);
+    this.__manager = state.MobManager;
 
     this.setupBehaviors(state.MobBehaviorManager);
 

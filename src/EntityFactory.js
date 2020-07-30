@@ -191,6 +191,8 @@ class EntityFactory {
           }
           for (const prop1 of Object.keys(newProps[prop])) {
             if (newProps[prop][prop1]['...'] === true) {
+              // don't try to inherit a metadatabase grammar
+              if (prop1.substr(0,1) === '$') continue
               newProps[prop][prop1] = [...entity[toSet][prop][prop1], ...newProps[prop][prop1].value];
               delete newProps[prop][prop1]['...'];
               Object.assign(entity[toSet][prop][prop1], newProps[prop][prop1]);
